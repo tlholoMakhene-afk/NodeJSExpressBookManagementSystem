@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <%- include('../partials/head');  %> 
+</head>
+<body>
+<%- include('../partials/menu');  %>
+
+<div>
+    <div class="container-fluid bg-3 text-center">    
+        <h1><%= action %> Book Details!</h1>
+        <p></p>
+        <div class="d-flex justify-content-center align-items-center container " >
+            <div class="row"> 
+                <form name="form" method="POST" class="form-inline justify-content-center" action="/<%= action === 'Update' ? action+ '/'+object._id : action %>">
+                    <table class="form-group">
+                        <tr>
+                            <td class="control-label"><label for="title">Book Title:</label></td>
+                            <td><input type="text" required name="title" class="form-control"
+                                    value="<%= action === 'Update' ? object.title : '' %>"></td>
+                        </tr>
+                        <tr>
+                            <td class="control-label" ><label for="author">Book Author:</label></td>
+                            <td><input type="text" required name="author" class="form-control"
+                                    value="<%= action === 'Update' ? object.author : '' %>"></td>
+                        </tr>
+                        <tr>
+                            <td class="control-label"><label for="date">Date Published:</label></td>
+                            <td><input type="number" required name="date" class="form-control"
+                                    value="<%= action === 'Update' ? object.date_of_publication : '2019' %>"></td>
+                        </tr>
+                        <tr>
+                            <td class="control-label"><label for="category">Book Category:</label></td>
+                            <td><select class="form-control" id="category" name="category" required>
+                                    <% categories.forEach((catItem) => { %>
+                                            <% if(action === 'Update' && catItem === object.book_category ){ %>
+                                                <option selected value="<%=catItem%>"><%=catItem%></option>
+                                            <% } else{ %>
+                                                <option value="<%=catItem%>"><%=catItem%></option>
+                                            <% } %>
+                                    <% }) %>
+                                </select></td>
+                        </tr>
+                        <tr>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" value="<%= action === 'Update' ? 'Update' : 'Save' %>"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+          </div>
+
+
+
+</div>
+
+</div>
+
+</body>
+<%- include('../partials/script');  %>
+</html>
